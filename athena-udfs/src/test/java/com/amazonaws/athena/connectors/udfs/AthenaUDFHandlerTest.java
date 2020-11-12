@@ -27,8 +27,8 @@ import org.junit.Test;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import java.io.EOFException;
 import java.util.Base64;
-import java.util.zip.DataFormatException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -97,8 +97,7 @@ public class AthenaUDFHandlerTest
             athenaUDFHandler.decompress("");
         }
         catch (RuntimeException e) {
-            assertTrue(e.getCause() instanceof DataFormatException);
-            assertEquals("Input is truncated", e.getCause().getMessage());
+            assertTrue(e.getCause() instanceof EOFException);
         }
     }
 
